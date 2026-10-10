@@ -19,6 +19,8 @@ body{
     min-height: 100vh; /* Ocupe ao menso a altura da tela */
     text-rendering: optimizeLegibility; /* Melhora a legibilidade do texto */
     -wekit-font-smoothing: antialised; 
+
+    transition: 0.3s;
 }
 
 /* Elementos de mídia */
