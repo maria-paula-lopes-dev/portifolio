@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+/* Box-sizing */
+*::after, *::before{
+    box-sizing: border-box; /*Faz com que padding e border não aumentam a largura*/
+}
+
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    min-height: 100vh; /* Ocupe ao menso a altura da tela */
+    text-rendering: optimizeLegibility; /* Melhora a legibilidade do texto */
+    -wekit-font-smoothing: antialised; 
+}
+
+/* Elementos de mídia */
+img, picture, video, canvas, svg{
+    display: block; /*Remove os espaços extras abaixo*/
+    max-width: 100%; /*Pra não ultrapassar container*/
+}
+
+/* Botões */
+button{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Links */
+a{
+    text-decoration: none;
+}
+
+/* Listas */
+ul, ol{
+    list-style: none;
+    padding: 0;
+}
+
+/* Textos */
+h1, h2, h3, h4, h5, h6, p{
+    overflow-wrap: break-word; /*Evita que palavras grandes quebrem o layout*/
+}
