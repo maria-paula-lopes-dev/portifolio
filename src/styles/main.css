@@ -3,3 +3,268 @@
 /* imports */
 @import url(base/reset.css);
 @import url("base/variables.css");
+
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/**/
+
+body{
+    background-color: var(--background);
+
+    /* Grade */
+    background-image: 
+        linear-gradient(to right, var(--surface) 0.5px, transparent 0.5px),
+        linear-gradient(to bottom, var(--surface) 0.5px, transparent 0.5px);
+
+        /* Tamanho dos quadriculados */
+        background-size: 50px 50px;
+
+        margin: 0;
+
+    
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    overflow: hidden;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 70px;
+
+    padding: 0 5%;
+
+    opacity: 0.92;
+    backdrop-filter: blur(8px);
+
+    background-color: var(--background);
+    box-shadow: var(--shadow-medium);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header__progress{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 0;
+    height: 3px;
+
+    background-color: var(--highlight);
+}
+
+.header__logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    transition: transform 0.9s ease-in-out;
+}
+
+.fa-code{
+    font-size: 30px;
+    color: var(--highlight);
+}
+
+.header__name{
+    font-size: 18px;
+    color: var(--text);
+}
+
+.fa-code{
+    transition: transform 0.9s ease-in-out;
+}
+
+.fa-code:hover{
+    transform: scale(1.1);
+} 
+
+/* Menu hamburger */
+.header__nav{
+    position: fixed; /* Preso à viewport e não ao header e é ignorado pelo fluxo do layout */
+    top: 80px; /* Abaixo do header */
+    left: 0;
+
+    width: 100%; /* Largura */
+    height: calc(100vh - 70px); /* Toda a tela abaixo do header */
+
+    /* Escondido inicialmente */
+    transform: translateY(-100%); /* Move o elemento 100% da própria altura -> sai da tela (esconde acima) */
+
+    opacity: 0; /* Não aparece */
+
+    pointer-events: none;
+    transition: 0.3s ease;
+    z-index: 999;
+}
+
+/* ESTADO: quando ativo (menu aberto) */
+.header__nav.is-active{
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.header__menu{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 100%;
+}
+
+.header__itens{
+    width: 100%;
+}
+
+.header__links{
+    display: block;
+    padding: 20px;
+
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--text-muted);
+
+    border-bottom: 0.5px solid rgba(0,0,0,0.05);
+
+    transition: 0.3s ease-in-out; /* Transição de texto */
+}
+
+.header__links:hover{
+    font-weight: bold;
+    background-color: #b9a9c9;
+}
+
+.header__container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+#theme-button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    padding: 0 !important;
+
+    border: 1px solid var(--border);
+    border-radius: 8px; /* Cantos arredondados suaves ao invés de 50% */
+    background-color: transparent;
+    text-decoration: none;
+}
+
+#theme-icon {
+    font-size: 18px;
+    color: var(--text);
+}
+
+.header__toggle{
+    transition: transform 0.1s ease-in-out;
+}
+
+.header__icon{
+    font-size: 30px;
+    color: var(--text);
+}
+
+.header__toggle .fa-xmark{
+    display: none;
+}
+
+/* Quando o menu estiver ativo, o hamburger esconde */
+.header__toggle.is-active .fa-bars-staggered{
+    display: none;
+}
+
+/* Quando estiver ativado, o hamburger esconde e o close aparece */
+.header__toggle.is-active .fa-xmark{
+    display: block;
+}
+
+/* Media query desktop */
+@media (min-width: 768px){
+    .header{   
+        justify-content: space-around;
+    }
+
+    /* Nav volta ao fluxo normal (reset do mobile) -> No mobile ele se transformou em overlay fixo animado - No desktop ele volta a ser um menu em linhas normal */
+    .header__nav{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        position: static; /* Volta ao fluxo */
+        transform: none; /* Remove o translateY pra que ele volte pra tela */ 
+
+        opacity: 1; /* Reset */
+        pointer-events: auto;
+
+        width: auto; /* Remove o 100% - volta ao tamanho naturarl */
+        height: auto; /* Remove o 100vh - passa a depender do conteúdo */
+    }
+
+    /* Menu na horizontal */
+    .header__menu{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+
+        width: fit-content; /* Trava no tamanho do conteúdo -> menu fica exatament do tamanho do conteúdo, não cresce mais, pois antes ele expandia dentro do nav */
+    }
+
+    .header__links{
+        position: relative;
+
+        white-space: nowrap; /* Impede quebra de texto */
+        
+        padding: 8px;
+        border: none;
+    }
+
+    .header__links:hover{
+        font-weight: normal;
+        background: none;
+    }
+
+    .header__links::after{
+        content: " ";
+        position: absolute;
+        left: 0; /* Inicio do link */
+        bottom: 0; /* Na base do link */
+
+        width: 0%;
+        height: 2px;
+
+        background-color: var(--highlight);
+
+        transition: 0.5s ease-in-out;
+    }
+
+    .header__links:hover::after{
+        width: 100%;
+    }
+
+    /* Esconde o botão menu */
+    .header__toggle{
+        display: none;
+    }
+
+    .header__toggle:hover{
+        transform: scale(1.1);
+    }
+}

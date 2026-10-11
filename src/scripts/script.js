@@ -11,10 +11,17 @@ const body = document.body;
 //------
 
 // Persistência do tema
-const savedTheme = localStorage.getItem('theme');
+/* LocalStorage 
+* Quando uma página atualiza, as variáveis voltam ao estado inicial
+
+* Ele é como um pequeno banco de dados dentro do próprio navegador do user
+*/
+const savedTheme = localStorage.getItem('theme'); 
+// Busca o valor guardado na chave 'theme' e se o user nunca visitou antes, ele retorna null
 
 // Aplica o tema salvo no carregamento da página
 applyTheme(savedTheme === 'light');
+// Compara se o tema salvo era light (true ou false) e envia o valor pra função que aplica o tema
 
 //------
 
@@ -30,12 +37,17 @@ function applyTheme(isLight) {
     }
 }
 
+//------
+
 // Evento de click
 themeButton.addEventListener('click', (event) => {
     event.preventDefault(); // Evita que o link salte para o topo (comportamento padrão)
 
     // Altera a classe no body e armazena o resultado
     const isLight = body.classList.toggle('light');
+    /* 
+    Se a classe .light não estiver lá, ele coloca e vira true e se já estiver, vira false e o resultado é guardado em isLight
+    */
 
     // Atualiza as classes e os ícones
     applyTheme(isLight);
@@ -43,3 +55,26 @@ themeButton.addEventListener('click', (event) => {
     // Salva a preferência
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
+
+//------
+
+// Barra de progresso
+const progressBar = document.getElementById('progress-bar');
+
+// Atualiza a barra durante a rolagem
+function updateProgress(){
+    // Calcula quanto da página já foi percorrido
+    const alturaTotal = document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = alturaTotal > 0
+    ? (window.scrollY / alturaTotal) * 100 : 0;
+
+    // Atualiza a largura da barra
+    progressBar.style.width = `${progress}%`;
+}
+
+// Executa a função ao rolar a página
+window.addEventListener('scroll', updateProgress);
+
+// Calcula o progresso inicial
+updateProgress();

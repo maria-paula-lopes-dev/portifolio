@@ -30,6 +30,9 @@
     <!-- Header -->
     <header class="header">
 
+        <!-- Barra de progresso -->
+        <div class="header__progress" id="progress-bar"></div>
+
         <!-- Logo home -->
         <a href="" class="header__logo">
             <i class="fa-solid fa-code"></i>
@@ -65,11 +68,21 @@
             </ul>
         </nav>
 
-        <!-- Botão para alterar entre os temas -->
-        <a href="#" id="theme-button" class="header__links" aria-label="Alternar tema">
-            <!-- ícone inicial: sol -->
-            <i class="bi bi-sun" id="theme-icon"></i>
-        </a>
+        <div class="header__container">
+            <!-- Botão para alterar entre os temas -->
+            <a href="#" id="theme-button" aria-label="Alternar tema">
+                <!-- ícone inicial: sol -->
+                <i class="bi bi-sun" id="theme-icon"></i>
+            </a>
+            <!-- BOTÃO TOGGLE DO MENU (controle de estado via JS) -->
+            <button class="header__toggle" aria-label="Abrir menu">
+                <!-- ÍCONE: estado FECHADO (hamburger) -->
+                <i class="fa-solid fa-bars-staggered header__icon"></i>
+                <!-- ÍCONE: estado ABERTO (close) -->
+                <i class="fa-solid fa-xmark header__icon"></i>
+            </button>
+            <!-- BOTÃO TOGGLE DO MENU -->
+        </div>
 
     </header>
 

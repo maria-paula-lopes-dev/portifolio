@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 /* Box-sizing */
-*::after, *::before{
-    box-sizing: border-box; /*Faz com que padding e border não aumentam a largura*/
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 /* Reset */
@@ -12,15 +12,19 @@
 }
 
 html{
+    max-width: 100%;
+    overflow-x: hidden; /* Corta qualquer conteúdo que acidentalmente ultrapasse a largura */
     scroll-behavior: smooth;
 }
 
 body{
+    max-width: 100%;
+    overflow-x: hidden; /* Corta qualquer conteúdo que acidentalmente ultrapasse a largura */
     min-height: 100vh; /* Ocupe ao menso a altura da tela */
     text-rendering: optimizeLegibility; /* Melhora a legibilidade do texto */
     -wekit-font-smoothing: antialised; 
 
-    transition: 0.3s;
+    transition: 0.5s;
 }
 
 /* Elementos de mídia */
