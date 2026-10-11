@@ -78,3 +78,16 @@ window.addEventListener('scroll', updateProgress);
 
 // Calcula o progresso inicial
 updateProgress();
+
+// Declara as variáveis. Isso vem depois do header
+const toggle = document.querySelector('.header__toggle');
+const nav = document.querySelector('.header__nav');
+
+// Checa se o botão e o menu estão na página/foram identificados, se sim, ele liga o clique, se não, ele não trava o site
+if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+        // O toggle funciona como um apagador
+        nav.classList.toggle('is-active');
+        toggle.classList.toggle('is-active');
+    });
+}
